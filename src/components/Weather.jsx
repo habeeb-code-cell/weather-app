@@ -1,7 +1,9 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // Importing weather CSS to style the Weather component
-import './weather.css';
+// import './weather.css';
+import './Weather.css'; // match exact filename (case-sensitive!)
+
 
 // importing all icons 
 import search_icon from '../assets/search.png';
@@ -14,6 +16,7 @@ import snow_icon from '../assets/snow.png';
 import wind_icon from '../assets/wind.png';
 
 const Weather = () => {
+const InputRef = useRef()
 
   // we create on state variable below where we will store the data that is coming from the api 
   const [weatherData, setWeatherData] = useState(false);
@@ -35,11 +38,12 @@ const Weather = () => {
     "13d": snow_icon,
     "13n": snow_icon,
   }
-
+                                             
   // A function to enable the api works 
-  const search = async (city)=>{
+  const search = async (city)=>{ 
+    const api = "d4cf6fe232201d218a326165d4403b83"
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${api}`;
     try {
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${import.meta.env.VITE_APP_ID}`;
       
       //  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}$units=metric&appid=${import.meta.env.VITE_APP_ID}`;  
        // // paste the url in backticks above and change the API key to the one in the environmental variable file.
@@ -80,21 +84,21 @@ const Weather = () => {
   // to call the response function whenever the components get loaded so useEffect will be added 
     useEffect(()=>{
       // you have to provide a city name as a string 
-      search("London")
+      search("Jos")
     },[])
       return (
     <div className="weather">
       {/* Search box section */}
       <div className="search-bar">
-        <input type="text" placeholder="Search" />
+        <input ref = {InputRef} type="text" placeholder="Search" />
 
          {/* for the search icon */}
-        <img src={search_icon} alt="Search" />
+        <img src={search_icon} alt="Search" onClick={() => search(InputRef.current.value)} />
         {/* font isnt looking well so we have to visit Google font */}
       </div>
       
       {/* for weather images and giving them a class name for styling*/}
-      <img src={clear_icon} alt="" className="weather-icon"/>
+      <img src={clear_icon} alt=""  className="weather-icon"/>
 
       {/* temperatures will be displayed in passage tags and giving them a classname to style them*/}
       {/* since we are displaying temperature so we can replace them instead */}
@@ -107,7 +111,7 @@ const Weather = () => {
       {/* informations on the weather data  */}
       <div className='weather-data'>
         <div className='column'>
-          <img src={humidity_icon} alt="" />
+          <img src={humidity_icon} alt="picture" />
             <div>
               <p>{weatherData.humidity} %</p>
               <span>Humidity</span>
@@ -128,3 +132,5 @@ const Weather = () => {
 };
 
 export default Weather;
+
+
