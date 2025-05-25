@@ -1,76 +1,195 @@
-
 .weather {
-    place-self: center; /* because we have used grid layout in the parent div */
-    padding: 40px;
+    place-self: center; /* Keep grid centering */
+    padding: 2rem; /* Use rem for scalability (was 40px) */
     border-radius: 10px; 
     background-image: linear-gradient(45deg, #2f4680, #2d2a31);
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 90%; /* Ensure it doesn't overflow on small screens */
+    max-width: 500px; /* Limit max width for larger screens */
+    box-sizing: border-box; /* Ensure padding doesn't cause overflow */
 }
 
-.search-bar{
+.search-bar {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 0.75rem; /* Use rem for scalability (was 12px) */
+    width: 100%; /* Ensure it takes full available width */
+    max-width: 400px; /* Limit max width for larger screens */
 }
 
-.search-bar input{
-    height: 50px;
+.search-bar input {
+    height: 3rem; /* Use rem (was 50px) */
+    width: 100%; /* Make input flexible */
+    max-width: 300px; /* Limit max width */
     border: none;
     outline: none;
     border-radius: 40px;
-    padding-left: 25px;
+    padding-left: 1.5rem; /* Use rem (was 25px) */
     color: #626262;
     background: #ebfffc;
-    font-size: 18px;
+    font-size: 1.125rem; /* Use rem (was 18px) */
+    box-sizing: border-box;
 }
 
-.search-bar img{
-    width: 50px;
-    padding: 15px;
+.search-bar img {
+    width: 3rem; /* Use rem (was 50px) */
+    padding: 0.75rem; /* Use rem (was 15px) */
     border-radius: 50%;
     background: #ebfffc;
-    cursor: poi;
+    cursor: pointer; /* Fixed typo: was 'poi' */
 }
 
-.weather-icon{
-    width: 150px;
-    margin: 30px 0;
+.weather-icon {
+    width: 40vw; /* Scale with viewport width */
+    max-width: 150px; /* Cap the max size */
+    min-width: 120px; /* Ensure it doesn't get too small */
+    margin: 1.5rem 0; /* Use rem (was 30px) */
 }
 
-.temperature{
+.temperature {
     color: #fff;
-    font-size: 80px;
+    font-size: 5rem; /* Use rem (was 80px) */
     line-height: 1;
 }
 
-.Location{
+.Location {
     color: #fff;
-    font-size: 40px;
+    font-size: 2.5rem; /* Use rem (was 40px) */
 }
 
-.weather-data{
+.weather-data {
     width: 100%;
-    margin-top:40px;
+    margin-top: 2rem; /* Use rem (was 40px) */
     color: #fff;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 1rem; /* Add gap for better spacing */
 }
 
-.weather-data .column{
+.weather-data .column {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-    font-size: 22px;
+    gap: 0.75rem; /* Use rem (was 12px) */
+    font-size: 1.375rem; /* Use rem (was 22px) */
+    flex: 1; /* Allow columns to grow/shrink */
+    min-width: 120px; /* Prevent columns from shrinking too much */
 }
 
-.weather-data .column span{
+.weather-data .column span {
     display: block;
-    font-size:16px;
+    font-size: 1rem; /* Use rem (was 16px) */
 }
 
-.weather-data .column img{
-    width: 26px;
-    margin-top: 10px;
+.weather-data .column img {
+    width: 1.625rem; /* Use rem (was 26px) */
+    margin-top: 0.625rem; /* Use rem (was 10px) */
+}
+
+/* Media Queries for Responsiveness */
+
+/* Small screens (phones: ≤600px) */
+@media (max-width: 600px) {
+    .weather {
+        padding: 1rem; /* Reduce padding */
+        width: 95%; /* Take more width on small screens */
+    }
+
+    .search-bar {
+        gap: 0.5rem; /* Reduce gap */
+    }
+
+    .search-bar input {
+        height: 2.5rem; /* Smaller input */
+        font-size: 1rem; /* Smaller font */
+        padding-left: 1rem;
+    }
+
+    .search-bar img {
+        width: 2.5rem; /* Smaller icon */
+        padding: 0.5rem;
+    }
+
+    .weather-icon {
+        width: 35vw; /* Slightly smaller */
+        min-width: 100px;
+    }
+
+    .temperature {
+        font-size: 3.5rem; /* Smaller font */
+    }
+
+    .Location {
+        font-size: 1.75rem; /* Smaller font */
+    }
+
+    .weather-data .column {
+        font-size: 1.125rem; /* Smaller font */
+        min-width: 100px;
+    }
+
+    .weather-data .column span {
+        font-size: 0.875rem; /* Smaller font */
+    }
+
+    .weather-data .column img {
+        width: 1.25rem; /* Smaller icon */
+    }
+}
+
+/* Medium screens (tablets: 601px–1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .weather {
+        padding: 1.5rem;
+        width: 80%;
+    }
+
+    .search-bar input {
+        height: 2.75rem;
+        font-size: 1.125rem;
+    }
+
+    .search-bar img {
+        width: 2.75rem;
+        padding: 0.625rem;
+    }
+
+    .weather-icon {
+        width: 35vw;
+    }
+
+    .temperature {
+        font-size: 4rem;
+    }
+
+    .Location {
+        font-size: 2rem;
+    }
+
+    .weather-data .column {
+        font-size: 1.25rem;
+    }
+
+    .weather-data .column span {
+        font-size: 0.875rem;
+    }
+}
+
+/* Large screens (laptops/desktops: >1024px) */
+@media (min-width: 1025px) {
+    .weather {
+        padding: 2rem;
+        width: 70%;
+        max-width: 500px;
+    }
+
+    .temperature {
+        font-size: 5rem;
+    }
+
+    .Location {
+        font-size: 2.5rem;
+    }
 }
