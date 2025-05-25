@@ -1,4 +1,5 @@
 Weather App
+
 Overview
 The Weather App is a simple, responsive web application built with React and Vite. It allows users to search for real-time weather information for any city using the OpenWeatherMap API. The app displays the temperature, location, humidity, and wind speed, along with a weather icon representing the current conditions.
 Features
